@@ -4,6 +4,7 @@
 ###Tested with Tegra210_Linux_R24.1.0_armhf.tbz2
 ###Tested with Tegra_Linux_Sample-Root-Filesystem_R24.1.0_armhf.tbz2
 
+
 ###Done on HOST PC go to
 https://developer.nvidia.com/embedded/linux-tegra
 ###download latest version .
@@ -63,4 +64,7 @@ sudo shutdown -h now
 ###Turn on TX1 it should boot as SSD as home and show the internal eMMC as a SDCard on the unity launcher
 
 
-
+###Steps derived from
+http://demotomohiro.github.io/hardware/jetson_tk1/setup/nvidia_kernel.html
+http://demotomohiro.github.io/hardware/jetson_tk1/setup/external_storage.html
+https://devtalk.nvidia.com/default/topic/794002/-solved-l4t21-1-problem-booting-from-sata/#4386318
