@@ -23,21 +23,23 @@ sudo tar jxpf ../../Tegra_Linux_Sample-Root-Filesystem_RXX.X.X_armhf.tbz2
 cd ..
 sudo ./apply_binaries.sh
 
-###Format target storage to ext3 and mount it.
-###I assume ext4 will also work I may go back and try it with this if I have performance issues.
+###Format target storage to ext4 and mount it.
 ###use lsblk to make sure you are formatting the correct drive in my case only two storage devices are present on host
 
-sudo mkfs.ext3 /dev/sdb
+sudo mkfs.ext4 /dev/sdb
 
 ###access SSD storage thru media you may have to individually make each directory below with sudo
-
-mkdir /mnt/jetson
+cd /media/$USER/
+ls
+##what comes up goes into drive
+mkdir /media/$USER/(drive)/mnt
+mkdir /media$/$USER/(drive)/mnt/jetson
 sudo mount /dev/sd? /mnt/jetson
 
 ###Copy Sample file system to target storage and unmount it.
 
 cd Linux_for_Tegra/rootfs
-sudo cp -a * /mnt/jetson && sync
+sudo cp -a * /media/$USER/(drive)/jetson && sync
 umount /mnt/jetson
 
 ###Turn on JetsonTX1 with previous clean installation of jetpack.
