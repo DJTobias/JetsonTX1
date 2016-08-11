@@ -1,2 +1,2 @@
-# JetsonTX
+# JetsonTX1
 Installation steps
