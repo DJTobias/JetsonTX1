@@ -1,5 +1,13 @@
 sudo apt-add-repository universe
 sudo apt-get update
+//install ros?
+https://devtalk.nvidia.com/default/topic/952041/ros-install-on-jetson-tx1-e-unable-to-locate-package-ros-indigo-desktop-full-my-thoughts/?offset=1
+install cuda
+instal python-dev
+install gsteamer 1.0
+sudo apt-get install gstreamer1.0-tools gstreamer1.0-alsa \
+gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad gstreamer1.0-libav -y
 
 sudo apt-get install python-dev 
 sudo apt-get install python-numpy
@@ -26,7 +34,7 @@ cd opencv-3.1.0
 mkdir build
 cd build
 ccmake ..
-
+make -j4 install
 ##document what selected besides cuda support
 ## save cmakelist maybe
 
@@ -35,3 +43,6 @@ need to build in python site packages
 http://www.askaswiss.com/2016/01/how-to-install-opencv-3-1-python-ubuntu-14-04.html
 https://devtalk.nvidia.com/default/topic/917386/jetson-tx1/usb-3-0-port-unstable-on-jetson-tx1-/post/4835793/#4835793
 http://www.pyimagesearch.com/2015/07/20/install-opencv-3-0-and-python-3-4-on-ubuntu/
+
+
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DWITH_CUDA=ON -DCUDA_ARCH_BIN="5.3" -DCUDA_ARCH_PTX="" -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_SUPPORT=ON -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -DWITH_V4L=ON -DWITH_OPENGL=ON -DWITH_VTK=ON -DWITH_GTK_2_X=ON -DINSTALL_PYTHON_EXAMPLES=ON -DINSTALL_C_EXAMPLES=OFF -DWITH_GSTREAMER=ON -DWITH_CUFFT=ON -DWITH_LIBV4L=ON ..
