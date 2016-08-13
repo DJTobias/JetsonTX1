@@ -33,10 +33,26 @@ unzip ~/Downloads/opencv-3.1.0.zip
 cd opencv-3.1.0
 mkdir build
 cd build
-ccmake ..
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DWITH_CUDA=ON -DCUDA_ARCH_BIN="5.3" -DCUDA_ARCH_PTX="" -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_SUPPORT=ON -DWITH_V4L=ON -DWITH_OPENGL=ON -DWITH_GTK_2_X=ON -DINSTALL_PYTHON_EXAMPLES=ON -DINSTALL_C_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON -DWITH_GSTREAMER=ON -DWITH_CUFFT=ON  ..
 make -j4 install
-##document what selected besides cuda support
-## save cmakelist maybe
+
+##This copies shared opject files to site packages
+## this allows from import cv2 = 3.1.0
+sudo cp ~/src/opencv-3.1.0/build/lib/* /usr/local/lib/python2.7/site-packages/
+
+python
+import sys
+sys.path.insert(1, '/usr/local/lib/python2.7/site-packages')
+import cv2 
+cv2.__version__
+'3.1.0'
+
+##add to header of any opencv python file to use opencv 3.1 this overrides ros version of opencv
+import sys
+sys.path.insert(1, '/usr/local/lib/python2.7/site-packages')
+import cv2
+>>> cv2.__version__
+'3.1.0'
 
 todo
 need to build in python site packages
@@ -44,5 +60,8 @@ http://www.askaswiss.com/2016/01/how-to-install-opencv-3-1-python-ubuntu-14-04.h
 https://devtalk.nvidia.com/default/topic/917386/jetson-tx1/usb-3-0-port-unstable-on-jetson-tx1-/post/4835793/#4835793
 http://www.pyimagesearch.com/2015/07/20/install-opencv-3-0-and-python-3-4-on-ubuntu/
 
+#ignore
+#cmake -DCMAKE_BUILD_TYPE=RELEASE -DWITH_CUDA=ON -DCUDA_ARCH_BIN="5.3" -DCUDA_ARCH_PTX="" -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_SUPPORT=ON -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -DWITH_V4L=ON -DWITH_OPENGL=ON -DWITH_VTK=ON -DWITH_GTK_2_X=ON -DINSTALL_PYTHON_EXAMPLES=ON -DINSTALL_C_EXAMPLES=OFF -DWITH_GSTREAMER=ON -DWITH_CUFFT=ON -DWITH_LIBV4L=ON ..
 
-cmake -DCMAKE_BUILD_TYPE=RELEASE -DWITH_CUDA=ON -DCUDA_ARCH_BIN="5.3" -DCUDA_ARCH_PTX="" -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_SUPPORT=ON -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -DWITH_V4L=ON -DWITH_OPENGL=ON -DWITH_VTK=ON -DWITH_GTK_2_X=ON -DINSTALL_PYTHON_EXAMPLES=ON -DINSTALL_C_EXAMPLES=OFF -DWITH_GSTREAMER=ON -DWITH_CUFFT=ON -DWITH_LIBV4L=ON ..
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DWITH_CUDA=ON -DCUDA_ARCH_BIN="5.3" -DCUDA_ARCH_PTX="" -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_SUPPORT=ON -DWITH_V4L=ON -DWITH_OPENGL=ON -DWITH_GTK_2_X=ON -DINSTALL_PYTHON_EXAMPLES=ON -DINSTALL_C_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON -DWITH_GSTREAMER=ON -DWITH_CUFFT=ON  ..
+make -j4 install
