@@ -70,12 +70,29 @@ import cv2
 >>> cv2.__version__
 '3.1.0'
 
-todo
-find bashrc command to use opencv 3.1 automatically
+##links library for c++
+sudo gedit /etc/ld.so.conf.d/opencv.conf
+## add line below to file and save
+/usr/local/lib
+sudo ldconfig
+sudo gedit /etc/bash.bashrc
+## add lines below at bottom of file and save
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+export PKG_CONFIG_PATH
+
+## how to run c++ files
+g++ `pkg-config --cflags opencv` facedetect.cpp `pkg-config --libs opencv` -o facedetect
+                                 #name of file here                            #creates file
+./facedetect --camera 1
+#to run generate executable
+
+g++ `pkg-config --cflags opencv` farneback_optical_flow.cpp `pkg-config --libs opencv` -o farneback_optical_flow
+./farneback_optical_flow --camera 1
 
 http://www.askaswiss.com/2016/01/how-to-install-opencv-3-1-python-ubuntu-14-04.html
 https://devtalk.nvidia.com/default/topic/917386/jetson-tx1/usb-3-0-port-unstable-on-jetson-tx1-/post/4835793/#4835793
 http://www.pyimagesearch.com/2015/07/20/install-opencv-3-0-and-python-3-4-on-ubuntu/
+http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/
 
 #ignore lib4vl throws errors
 #cmake -DCMAKE_BUILD_TYPE=RELEASE -DWITH_CUDA=ON -DCUDA_ARCH_BIN="5.3" -DCUDA_ARCH_PTX="" -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_SUPPORT=ON -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules -DWITH_V4L=ON -DWITH_OPENGL=ON -DWITH_VTK=ON -DWITH_GTK_2_X=ON -DINSTALL_PYTHON_EXAMPLES=ON -DINSTALL_C_EXAMPLES=OFF -DWITH_GSTREAMER=ON -DWITH_CUFFT=ON -DWITH_LIBV4L=ON ..
@@ -86,3 +103,5 @@ make -j4 install
 ##important note i did run ccmake with a bunch of extra stuff related to cuda acceleration and there was a successful build. successful build log was destroyed sudo rm of the opencv binaries
 ##i then reran with the cmake command to try and fix the bindings for python.  This was not the way to fix it (correct way was python.syspath)but it ran a successful build
 ##there might be overlap with the ccmake and cmake build in case I ever need to remake opencv with fresh install
+
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DWITH_CUDA=ON -DCUDA_ARCH_BIN="5.3" -DCUDA_ARCH_PTX="" -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_PYTHON_SUPPORT=ON -DWITH_V4L=ON -DWITH_OPENGL=ON -DWITH_GTK_2_X=ON -DINSTALL_PYTHON_EXAMPLES=ON -DINSTALL_C_EXAMPLES=OFF -DBUILD_SHARED_LIBS=ON -DWITH_GSTREAMER=ON -DWITH_CUFFT=ON  ..
