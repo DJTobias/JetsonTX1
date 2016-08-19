@@ -33,7 +33,7 @@ sudo mount /dev/sd? /mnt/jetson
 ###Copy Sample file system to target storage and unmount it.
 
 cd Linux_for_Tegra/rootfs
-sudo cp -a * /media/$USER/(drive)/mnt/jetson && sync
+sudo cp -a * /mnt/jetson && sync
 umount /mnt/jetson
 
 ###Turn on JetsonTX1 with previous clean installation of jetpack.
