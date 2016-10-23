@@ -1,0 +1,10 @@
+flash jetpack on jetsontx1
+install intelrealsense
+install jetpack ssd
+logon to ssd jetpack
+
+cd /media/ubuntu/eMMC/lib/modules
+sudo cp -a 3.10.96-jetsonbot/ /lib/modules/
+sudo depmod
+sudo modprobe uvcvideo
+lsmod
