@@ -4,12 +4,16 @@
 ###Tested with Tegra210_Linux_R24.1.0_armhf.tbz2
 ###Tested with Tegra_Linux_Sample-Root-Filesystem_R24.1.0_armhf.tbz2
 
+##Tested on 1/14/2017 
+##Tested with Samsung Evo 750 120GB SSD
+##Tested with Tegra210_Linux_R24.2.1_aarch64.tbz2
+##Tested with Tegra_Linux_Sample-Root-Filesystem_R24.2.1_aarch64.tbz2
 
 ###Done on HOST PC go to
 https://developer.nvidia.com/embedded/linux-tegra
 ###download latest version .
-download Jetson TX1 32-bit Driver Package
-download 32-bit Sample Root Filesystem
+download Jetson TX1 64-bit Driver Package
+download 64-bit Sample Root Filesystem
 move both to home directory.
 
 ###Extracts files and moves the sample filesystem to rootfs keeps permissions.  Do not use GUI extract
@@ -27,7 +31,7 @@ sudo ./apply_binaries.sh
 ###use lsblk to make sure you are formatting the correct drive in my case only two storage devices are present on host
 
 sudo mkfs.ext4 /dev/sdb
-mkdir /mnt/jetson
+sudo mkdir /mnt/jetson
 sudo mount /dev/sd? /mnt/jetson
 
 ###Copy Sample file system to target storage and unmount it.
