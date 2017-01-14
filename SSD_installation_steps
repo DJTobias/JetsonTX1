@@ -38,7 +38,7 @@ sudo mount /dev/sd? /mnt/jetson
 
 cd Linux_for_Tegra/rootfs
 sudo cp -a * /mnt/jetson && sync
-umount /mnt/jetson
+sudo umount /mnt/jetson
 
 ###Turn on JetsonTX1 with previous clean installation of jetpack.
 ###Tested with clean install of Jetpack 2.2.1
